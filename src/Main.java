@@ -1,0 +1,87 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner ingresar = new Scanner(System.in);
+        List<Integer> lista = new ArrayList<>();
+
+        for (int i = 0; i < 1000000; i++) {
+
+            int numero_random = (int) (Math.random()*5000+1);
+            lista.add(numero_random);
+
+        }
+
+        Collections.sort(lista);
+        System.out.println(lista);
+
+        int buscar, num = lista.size();
+        boolean n = false;
+
+        System.out.println("Ingresa el número a buscar (búsqueda lineal): ");
+        buscar = ingresar.nextInt();
+
+        long inicio = System.currentTimeMillis();
+
+        for (int i = 0; i < num; i++) {
+
+            if(lista.get(i) == buscar){
+                n = true;
+                break;
+            }else{
+                n = false;
+            }
+
+        }
+        System.out.println(lista);
+
+        if (n == true) {
+            System.out.println("Número encontrado!");
+
+        }else {
+
+            System.out.println("No se encontró el número");
+        }
+
+        long fin = System.currentTimeMillis();
+
+        System.out.println("Tiempo transcurrido: " + (fin-inicio));
+        System.out.println("\n\n");
+
+
+
+        System.out.println("Ingresa el número a buscar (búsqueda binaria): ");
+        buscar = ingresar.nextInt();
+
+        inicio = System.currentTimeMillis();
+
+        int bajo = 0;
+        int alto = lista.size()-1;
+        while(bajo <= alto){
+
+            int DatoMedio = (bajo + alto)/2;
+
+            if(lista.get(DatoMedio) == buscar){
+
+                System.out.println("Número encontrado");
+                break;
+
+            }else if (lista.get(DatoMedio) < buscar){
+                bajo = DatoMedio + 1;
+            }else{
+                alto = DatoMedio - 1;
+            }
+            if (DatoMedio == 0){
+                System.out.println("No se encontró el número");
+                break;
+            }
+
+        }
+        fin = System.currentTimeMillis();
+        System.out.println("Tiempo transcurrido: " + (fin-inicio));
+
+
+
+    }
+}
